@@ -7,11 +7,11 @@ functional programming constructs of the Racket programming language.
 
 
 1. What do the following Racket expressions evaluate to? (Work through the expression before trying it using the REPL.)  
-  - `(* 2 (+ 4 5))`
-  - `(= 3 (+ 1 3))`
-  - `(car '(elmer fudd daffy duck))`
-  - `(cdr '(elmer fudd daffy duck))`
-  - `(and (= 1 2) (= 10 (/ 1 0)))`
+  - `(* 2 (+ 4 5))` 18
+  - `(= 3 (+ 1 3))` #f
+  - `(car '(elmer fudd daffy duck))` elmer
+  - `(cdr '(elmer fudd daffy duck))` fudd daffy duck
+  - `(and (= 1 2) (= 10 (/ 1 0)))` #f (lazy eval)
  
 2. Find the squid! For each of the following variables, write an expression that picks out the symbol `squid`. 
    For example, for this definition:
