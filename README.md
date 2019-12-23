@@ -5,59 +5,53 @@
 This worksheet is intended to familiarise students with the 
 functional programming constructs of the Racket programming language. 
 
+;1) what are they evaluating to?
 
-1. What do the following Racket expressions evaluate to? (Work through the expression before trying it using the REPL.)  
-  - `(* 2 (+ 4 5))` 18
-  - `(= 3 (+ 1 3))` #f
-  - `(car '(elmer fudd daffy duck))` elmer
-  - `(cdr '(elmer fudd daffy duck))` fudd daffy duck
-  - `(and (= 1 2) (= 10 (/ 1 0)))` #f (lazy eval)
- 
-2. Find the squid! For each of the following variables, write an expression that picks out the symbol `squid`. 
-   For example, for this definition:
-   ```
-   (define x '(squid clam octopus))
-   ```
-   the answer is
-   ```
-   (car x)
-   ```
-   - `(define y '(clam squid octopus))`
-   - `(define z '(clam starfish (squid octopus) mollusc))`
- 
-3. Define a Racket function `avg` to find the average of three numbers provided as an arguments to the function.
+(* 2 (+ 4 5)); 18
+(= 3 (+ 1 3)); #f
+(car '(elmer fudd daffy duck)) ;'elmer
+(cdr '(elmer fudd daffy duck)); '(fudd daffy duck)
+(and (= 1 2) (= 10 (/ 1 0))); #f (lazy eval)
 
-4. Define a Racket function `mymax` to find the maximum of three numbers provided as an arguments to the function.
+;; 2) find the squid
 
-5. Suppose we evaluate the following Racket expressions:
-   ```
-   (define x '(snail clam))
-   (define y '(octopus squid scallop))
-   ```
-   Draw *box-and-arrow* diagrams of the result of evaluating the following expressions. 
-   What parts of the list are created fresh, and which are shared with the variables `x` and `y`?
-   (You can scan the answer in or use a drawing program.)
-   - `(cons 'geoduck x))`
-   - `(cons y y)`
-   - `(append x y)`
-   - `(cdr y)`
+(define y '(clam squid octopus))
+(cadr y)
+(define z '(clam starfish (squid octopus) mollusc))
+(caaddr z)
 
-6. Define a recursive function `sum` to find the sum of the numbers in a list.
+;; 3) define avg function
 
-7. Define a *tail recursive* version of `sum`. (Define an auxiliary function if required.)
+(define (my-avarage  lst )
+  (let((x (apply + lst))) (/ x (length lst)) ))
 
-8. What is the result of evaluating the following Racket expressions?
-   ```
-   (let ((x (+ 2 4))
-         (y 100))
-        (+ x y))
-   ```
-   ```
-   (let ((x 100) 
-         (y 5)) 
-        (let ((x 1)) 
-            (+ x y)))
-   ```
-   
-9. Define a function `mylength` to find the length of a list. 
-   You should not use the length function that is already available!
+;;or
+
+(define (my-avarage-expli-rec lst)
+    (define (f lst)
+   (if (null? lst)
+       0
+   (+ (car lst)(f (cdr lst)) ) ))(/(f lst)(length lst))
+    
+  )
+
+;; 4) define myMax function
+
+(define (my-max lst)
+  (if (null? lst)
+      0
+      (let ((x (car lst))) (if(>(my-max (cdr lst)) x) (my-max (cdr lst)) x))))
+
+;; 7) tail recursive sum
+
+(define (Tsum lst   accum)
+  (if (null? lst)
+      accum
+      (Tsum (cdr lst)  (+ accum (car lst) ))))
+;;8) Answer: 106 and 6 respectively. In the second expression, x in the second let overshadows the x in the first let.
+
+;; 9) Define a function `mylength` to find the length of a list.
+(define (my-length lst accum)
+   (if (null? lst)
+       accum
+       (my-length (cdr lst) (+ 1 accum))))
