@@ -44,12 +44,19 @@
 
   ;Answer drawn in separate uploaded file
 
+;; 6) recursive sum
+(define (sum l)
+(if (empty? l) 0
+    
+    (+ (car l) (sum (cdr l)))))
+    
 ;; 7) tail recursive sum
 
 (define (Tsum lst   accum)
   (if (null? lst)
       accum
       (Tsum (cdr lst)  (+ accum (car lst) ))))
+
 ;;8) Answer: 106 and 6 respectively. In the second expression, x in the second let overshadows the x in the first let.
 
 ;; 9) Define a function `mylength` to find the length of a list.
