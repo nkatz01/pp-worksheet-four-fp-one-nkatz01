@@ -36,6 +36,14 @@
       0
       (let ((x (car lst))) (if(>(my-max (cdr lst)) x) (my-max (cdr lst)) x))))
 
+;;5) Suppose we evaluate the following Racket expressions:
+
+(define x '(snail clam))
+(define y '(octopus squid scallop))
+;;Draw box-and-arrow diagrams of the result of evaluating the following expressions.
+
+  ;Answer drawn in separate uploaded file
+
 ;; 7) tail recursive sum
 
 (define (Tsum lst   accum)
